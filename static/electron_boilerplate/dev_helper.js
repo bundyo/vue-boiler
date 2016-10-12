@@ -13,13 +13,13 @@ module.exports.setDevMenu = function () {
             click: function () {
                 BrowserWindow.getFocusedWindow().reloadIgnoringCache();
             }
-        },{
+        }, {
             label: 'Toggle DevTools',
             accelerator: 'Alt+CmdOrCtrl+I',
             click: function () {
                 BrowserWindow.getFocusedWindow().toggleDevTools();
             }
-        },{
+        }, {
             label: 'Quit',
             accelerator: 'CmdOrCtrl+Q',
             click: function () {
