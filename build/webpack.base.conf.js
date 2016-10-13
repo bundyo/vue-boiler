@@ -1,8 +1,8 @@
-var path = require('path')
-var webpack = require('webpack')
-var config = require('../config')
-var cssLoaders = require('./css-loaders')
-var projectRoot = path.resolve(__dirname, '../')
+var path = require('path');
+var webpack = require('webpack');
+var config = require('../config');
+var cssLoaders = require('./css-loaders');
+var projectRoot = path.resolve(__dirname, '../');
 
 module.exports = {
     // Note: entry points are added by environment-specific configs.
@@ -20,7 +20,7 @@ module.exports = {
         __dirname: false
     },
     resolve: {
-        extensions: ['', '.js', '.vue'],
+        extensions: ['', '.js', '.css'],
         fallback: [path.join(__dirname, '../node_modules')],
         alias: {
             app: path.resolve(__dirname, '../app')
@@ -32,12 +32,6 @@ module.exports = {
     module: {
         preLoaders: [
             {
-                test: /\.vue$/,
-                loader: 'eslint',
-                include: projectRoot,
-                exclude: /node_modules/
-            },
-            {
                 test: /\.js$/,
                 loader: 'eslint',
                 include: projectRoot,
@@ -45,10 +39,6 @@ module.exports = {
             }
         ],
         loaders: [
-            {
-                test: /\.vue$/,
-                loader: 'vue'
-            },
             {
                 test: /\.js$/,
                 loader: 'babel',
@@ -61,7 +51,11 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                loader: 'vue-html'
+                loader: 'html'
+            },
+            {
+                test: /\.css$/,
+                loader: 'css'
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -88,9 +82,6 @@ module.exports = {
             'shell'
         ])
     ],
-    vue: {
-        loaders: cssLoaders()
-    },
     eslint: {
         formatter: require('eslint-friendly-formatter')
     }

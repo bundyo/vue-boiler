@@ -1,8 +1,9 @@
 import Vue from 'vue';
-import App from './App';
+import Hello from './components/hello-component';
+import App from './App.html';
 
 /* eslint-disable no-new */
-new Vue({
-    el: 'app',
-    components: {App}
+Vue.component({
+    template: App,
+    components: Hello
 });

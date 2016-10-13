@@ -23,12 +23,6 @@ var webpackConfig = merge(webpackBaseConfig, {
         // the hot updates from looking for local files
         publicPath: devServerUrl
     },
-    vue: {
-        loaders: cssLoaders({
-            sourceMap: false,
-            extract: false
-        })
-    },
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
@@ -46,10 +40,7 @@ var webpackConfig = merge(webpackBaseConfig, {
             excludeChunks: ['devtools'],
             inject: true
         })
-    ],
-    resolve: {
-        alias: {vue: 'vue/dist/vue.js'}
-    }
+    ]
 });
 
 if (config.dev.vueDevTools) {
