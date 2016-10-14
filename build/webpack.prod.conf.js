@@ -18,12 +18,6 @@ module.exports = merge(baseWebpackConfig, {
         filename: '[name].js',
         chunkFilename: '[id].js'
     },
-    vue: {
-        loaders: cssLoaders({
-            sourceMap: config.build.productionSourceMap,
-            extract: true
-        })
-    },
     plugins: [
         new CopyWebpackPlugin([
             {from: './app/package.json', to: '.'},
@@ -60,4 +54,4 @@ module.exports = merge(baseWebpackConfig, {
             }
         })
     ]
-})
+});

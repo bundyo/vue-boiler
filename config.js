@@ -36,7 +36,7 @@ module.exports = {
     },
     dev: {
         // Dev server port.
-        port: 8080,
+        port: 50000,
 
         // Proxy requests to different backend during development.
         // https://github.com/chimurai/http-proxy-middleware

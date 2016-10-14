@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var config = require('../config');
-var cssLoaders = require('./css-loaders');
 var projectRoot = path.resolve(__dirname, '../');
 
 module.exports = {
@@ -20,7 +19,7 @@ module.exports = {
         __dirname: false
     },
     resolve: {
-        extensions: ['', '.js', '.css'],
+        extensions: ['', '.js', '.css', '.html'],
         fallback: [path.join(__dirname, '../node_modules')],
         alias: {
             app: path.resolve(__dirname, '../app')
@@ -41,9 +40,8 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'babel',
-                include: projectRoot,
-                exclude: /vue-devtools|node_modules/
+                loader: 'babel-loader',
+                include: projectRoot
             },
             {
                 test: /\.json$/,
@@ -51,7 +49,7 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                loader: 'html'
+                loader: 'vue-html'
             },
             {
                 test: /\.css$/,

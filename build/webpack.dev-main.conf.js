@@ -3,7 +3,6 @@ var merge = require('webpack-merge');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpackBaseConfig = require('./webpack.base.conf');
 var config = require('../config');
-var cssLoaders = require('./css-loaders');
 
 var devServerUrl = 'http://localhost:' + config.dev.port + '/';
 
@@ -58,5 +57,5 @@ if (config.dev.vueDevTools) {
     }))
 }
 
-module.exports = webpackConfig ;
+module.exports = webpackConfig;
 
