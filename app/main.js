@@ -1,9 +1,17 @@
-import Vue from 'vue';
-import Hello from './components/hello-component';
-import App from './App.html';
+const Vue = require("vue");
+const Hello = require("./components/hello-component");
+const App = require("./App.html");
+
+require("./main.css");
 
 /* eslint-disable no-new */
-Vue.component({
+module.extends = Vue.component("app", {
     template: App,
     components: Hello
+});
+
+require("app/hot-reload")(module);
+
+new Vue({
+    el: "#root"
 });

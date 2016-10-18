@@ -1,3 +1,4 @@
+var fs = require("fs");
 var webpack = require('webpack');
 var merge = require('webpack-merge');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,11 +7,13 @@ var config = require('../config');
 
 var devServerUrl = 'http://localhost:' + config.dev.port + '/';
 
+let webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
+
 var webpackConfig = merge(webpackBaseConfig, {
     entry: {
         app: [
             './build/dev-client?path=' + devServerUrl + '__webpack_hmr&noInfo=true&reload=true',
-            './app/main.js'
+            'app/main.js'
         ]
     },
     // eval-source-map is faster for development
@@ -36,6 +39,7 @@ var webpackConfig = merge(webpackBaseConfig, {
         new HtmlWebpackPlugin({
             filename: 'main.html',
             template: './app/main.html',
+            showErrors: true,
             excludeChunks: ['devtools'],
             inject: true
         })
@@ -56,6 +60,8 @@ if (config.dev.vueDevTools) {
         inject: true
     }))
 }
+
+webpackConfig.target = webpackTargetElectronRenderer(webpackConfig);
 
 module.exports = webpackConfig;
 

@@ -22,11 +22,17 @@ module.exports = {
         extensions: ['', '.js', '.css', '.html'],
         fallback: [path.join(__dirname, '../node_modules')],
         alias: {
-            app: path.resolve(__dirname, '../app')
+            app: path.resolve(__dirname, '../app'),
+            vue: 'vue/dist/vue.js'
         }
     },
     resolveLoader: {
         fallback: [path.join(__dirname, '../node_modules')]
+    },
+    vue: {
+        html: {
+            test: /\.html$/
+        }
     },
     module: {
         preLoaders: [
@@ -39,21 +45,21 @@ module.exports = {
         ],
         loaders: [
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                include: projectRoot
-            },
-            {
                 test: /\.json$/,
                 loader: 'json'
             },
             {
                 test: /\.html$/,
-                loader: 'vue-html'
+                loader: 'vue-html-loader'
             },
             {
                 test: /\.css$/,
-                loader: 'css'
+                exclude: /\.useable\.css$/,
+                loader: "vue-style-loader!css-loader"
+            },
+            {
+                test: /\.useable\.css$/,
+                loader: "style/useable!css"
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,

@@ -1,16 +1,20 @@
-import Vue from 'vue';
-import Hello from './Hello.html';
-import {remote} from 'electron'
-import os from 'os'
+const Vue = require("vue"),
+    Hello = require("./Hello.html"),
+    {remote} = require("electron"),
+    os = require("os");
 
-export default Vue.component(
-    "hello", {
+module.exports = {
+    "hello": Vue.component("hello", {
         template: Hello,
-        data: function () {
+        data() {
             return {
                 platform: os.platform(),
-                    appName: remote.app.getName(),
-                msg: 'Hello World, Yo!'
+                appName: remote.app.getName(),
+                msg: "Hello World 2, Yo!",
+                items: ["", ""]
             };
         }
-    });
+    })
+};
+
+require("app/hot-reload")(module);
