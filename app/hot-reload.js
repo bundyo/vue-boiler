@@ -7,17 +7,19 @@ module.exports = (module) => {
 
         api.install(Vue);
 
+        const exports = module.exports instanceof Vue.component.constructor ? { "1": module.exports } : module.exports;
+
         if (!module.hot.data) {
-            Object.keys(module.exports).forEach((name) => {
-                api.createRecord(module.id, module.exports[name].options);
+            Object.keys(exports).forEach((name) => {
+                api.createRecord(module.id, exports[name].options);
             });
         } else {
-            let compiler = require('vue-template-compiler');
+            const compiler = require('vue-template-compiler');
 
-            Object.keys(module.exports).forEach((name) => {
-                let options = module.exports[name].options;
+            Object.keys(exports).forEach((name) => {
+                const options = exports[name].options;
 
-                api.rerender(module.id, compiler.compileToFunctions(options.template, options));
+                api.rerender(module.id, Object.assign({}, options, compiler.compileToFunctions(options.template, options)));
             });
         }
     }
