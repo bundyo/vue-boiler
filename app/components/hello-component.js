@@ -10,7 +10,7 @@ module.exports = {
             return {
                 platform: os.platform(),
                 appName: remote.app.getName(),
-                msg: "Hello World 2, Yo!",
+                msg: "Hello World 3, Yo!",
                 items: ["", ""]
             };
         }
